@@ -1,0 +1,40 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://${databaseHost}/${databaseName}
+    username: ${databaseUser}
+    password: ${databasePwd}
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${google.client.id}
+            clientSecret: ${google.secret}
+            redirectUri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            clientName: "Google"
+            scope:
+              - email
+              - profile
+              - email
+              - address
+              - phone
+        provider:
+          google:
+            authorizationUri: "https://accounts.google.com/o/oauth2/v2/auth"
+            tokenUri: "https://www.googleapis.com/oauth2/v4/token"
+            userInfoUri: "https://www.googleapis.com/oauth2/v3/userinfo"
+            jwkSetUri: "https://www.googleapis.com/oauth2/v3/certs"
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
