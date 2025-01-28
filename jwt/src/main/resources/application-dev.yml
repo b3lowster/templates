@@ -1,0 +1,2 @@
+keys:
+  auth: classpath:keys/jwt_example.key
