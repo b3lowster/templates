@@ -1,0 +1,25 @@
+server:
+  port: 8081
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${googleClientId}
+            clientSecret: ${googleClientSecret}
+            redirectUri: ${redirect_uri}
+            clientName: "Google"
+            scope:
+              - email
+              - profile
+              - email
+              - address
+              - phone
+        provider:
+          google:
+            authorizationUri: "https://accounts.google.com/o/oauth2/v2/auth"
+            tokenUri: "https://www.googleapis.com/oauth2/v4/token"
+            userInfoUri: "https://www.googleapis.com/oauth2/v3/userinfo"
+            jwkSetUri: "https://www.googleapis.com/oauth2/v3/certs"
